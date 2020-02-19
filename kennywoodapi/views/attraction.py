@@ -64,7 +64,7 @@ class Attractions(ViewSet):
         """
         newattraction = Attraction()
         newattraction.name = request.data["name"]
-        newattraction.area.id = request.data["area_id"]
+        newattraction.area_id = request.data["area_id"]
         newattraction.save()
 
         serializer = AttractionSerializer(newattraction, context={'request': request})
@@ -77,7 +77,7 @@ class Attractions(ViewSet):
         Returns:
             Response -- Empty body with 204 status code
         """
-        attraction = request.objects.get(pk=pk)
+        attraction = Attraction.objects.get(pk=pk)
         attraction.name = request.data["name"]
         attraction.area_id = request.data["area_id"]
         attraction.save()
